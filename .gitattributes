@@ -1,0 +1,2 @@
+# Evita le differenze di fine riga tra Windows e Linux (i file del vault sono sempre LF)
+* text=auto eol=lf

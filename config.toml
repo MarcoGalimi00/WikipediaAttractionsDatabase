@@ -1,0 +1,80 @@
+# Configurazione di WikipediaAttractionsDatabase.
+# I segreti (chiavi Supabase, SMTP) NON vanno qui: stanno nel file .env (vedi .env.example).
+# Per usare un altro file: variabile d'ambiente WAD_CONFIG=/percorso/config.toml
+
+# Perimetro del catalogo: una riga per città.
+# [nome nella lista, etichetta italiana, etichetta inglese, paese ISO 3166-1 alpha-2]
+# Il paese distingue i nomi ambigui (Orlando, Nizza, Venezia, Porto); le due etichette servono
+# perché su Wikidata alcune voci hanno l'etichetta italiana diversa da quella che scriviamo noi.
+cities = [
+  ["Londra", "Londra", "London", "GB"],
+  ["Parigi", "Parigi", "Paris", "FR"],
+  ["Singapore", "Singapore", "Singapore", "SG"],
+  ["New York", "New York", "New York City", "US"],
+  ["Roma", "Roma", "Rome", "IT"],
+  ["Tokyo", "Tokyo", "Tokyo", "JP"],
+  ["Praga", "Praga", "Prague", "CZ"],
+  ["Amsterdam", "Amsterdam", "Amsterdam", "NL"],
+  ["Miami", "Miami", "Miami", "US"],
+  ["Los Angeles", "Los Angeles", "Los Angeles", "US"],
+  ["Barcellona", "Barcellona", "Barcelona", "ES"],
+  ["Las Vegas", "Las Vegas", "Las Vegas", "US"],
+  ["Milano", "Milano", "Milan", "IT"],
+  ["Vienna", "Vienna", "Vienna", "AT"],
+  ["Cancún", "Cancún", "Cancún", "MX"],
+  ["Berlino", "Berlino", "Berlin", "DE"],
+  ["Madrid", "Madrid", "Madrid", "ES"],
+  ["Lisbona", "Lisbona", "Lisbon", "PT"],
+  ["Atene", "Atene", "Athens", "GR"],
+  ["Venezia", "Venezia", "Venice", "IT"],
+  ["Firenze", "Firenze", "Florence", "IT"],
+  ["Dublino", "Dublino", "Dublin", "IE"],
+  ["San Francisco", "San Francisco", "San Francisco", "US"],
+  ["Sydney", "Sydney", "Sydney", "AU"],
+  ["Il Cairo", "Il Cairo", "Cairo", "EG"],
+  ["Budapest", "Budapest", "Budapest", "HU"],
+  ["Edimburgo", "Edimburgo", "Edinburgh", "GB"],
+  ["Toronto", "Toronto", "Toronto", "CA"],
+  ["Vancouver", "Vancouver", "Vancouver", "CA"],
+  ["Rio de Janeiro", "Rio de Janeiro", "Rio de Janeiro", "BR"],
+  ["Buenos Aires", "Buenos Aires", "Buenos Aires", "AR"],
+  ["Marrakech", "Marrakech", "Marrakesh", "MA"],
+  ["Città del Capo", "Città del Capo", "Cape Town", "ZA"],
+  ["San Pietroburgo", "San Pietroburgo", "Saint Petersburg", "RU"],
+  ["Cracovia", "Cracovia", "Kraków", "PL"],
+  ["Monaco di Baviera", "Monaco di Baviera", "Munich", "DE"],
+  ["Siviglia", "Siviglia", "Seville", "ES"],
+  ["Porto", "Porto", "Porto", "PT"],
+  ["Orlando", "Orlando", "Orlando", "US"],
+  ["Chicago", "Chicago", "Chicago", "US"],
+  ["Nizza", "Nizza", "Nice", "FR"],
+  ["Dubrovnik", "Dubrovnik", "Dubrovnik", "HR"],
+  ["Reykjavik", "Reykjavik", "Reykjavík", "IS"],
+  ["Montreal", "Montréal", "Montreal", "CA"],
+  ["Auckland", "Auckland", "Auckland", "NZ"],
+  ["Melbourne", "Melbourne", "Melbourne", "AU"],
+  ["Copenaghen", "Copenaghen", "Copenhagen", "DK"],
+  ["Stoccolma", "Stoccolma", "Stockholm", "SE"],
+  ["Varsavia", "Varsavia", "Warsaw", "PL"],
+  ["Bruges", "Bruges", "Bruges", "BE"],
+]
+
+[http]
+# Wikimedia e Overpass chiedono che ogni script si identifichi con un contatto.
+# Metti l'URL del tuo repo (o un contatto tuo): finisce nello User-Agent di tutte le richieste.
+contact = "https://github.com/OWNER/WikipediaAttractionsDatabase"
+
+[servizi]
+wikidata_api = "https://www.wikidata.org/w/api.php"
+overpass_url = "https://overpass-api.de/api/interpreter"  # cambia per usare un mirror pubblico
+qrank_base = "https://qrank.toolforge.org/download/"
+
+[wikidata]
+# Tipi Wikidata che contano come "luogo abitato" (confronto sul tipo esatto, senza sottotipi).
+place_types = ["Q15284", "Q1549591", "Q486972", "Q515"]
+# Vantaggio minimo (in numero di lingue) della prima candidata sulla rivale perché la scelta sia 'ok'.
+min_ratio = 2.0
+
+# Paesi senza codice ISO sulla propria voce Wikidata: QID del paese = codice ISO.
+[wikidata.known_countries]
+Q55 = "NL"

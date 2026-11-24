@@ -1,0 +1,6 @@
+requests
+supabase
+truststore
+duckdb  # refresh_scores.py: join tra QRank e i nostri QID
+psycopg[binary]  # refresh_scores.py: connessione Postgres per refresh e COPY
+openpyxl  # facoltativa: solo per leggere file Excel in fix_city_areas.py

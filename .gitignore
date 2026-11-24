@@ -1,0 +1,24 @@
+# Segreti
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ruff_cache/
+.pytest_cache/
+
+# Dati scaricati e output rigenerabili
+data/
+seed/citta_50.csv
+seed/candidati_50.csv
+seed/aree_proposte.csv
+
+# Sistema ed editor
+.DS_Store
+.idea/
+.vscode/
+*.log
